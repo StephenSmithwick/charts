@@ -230,6 +230,15 @@ body {
     fill: #bce8f1;
     stroke: #3a87ad;
   }
+
+  &.disabled {
+    fill: #b3b3b3;
+  }
+}
+
+.map-zoom {
+  fill:  #e6e6e6;
+  stroke-opacity:  1;
 }
 
 /*
