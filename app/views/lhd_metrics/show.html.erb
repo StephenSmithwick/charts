@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @lhd_metric.value %>
+</p>
+
+<p>
+  <strong>Lhd:</strong>
+  <%= @lhd_metric.lhd %>
+</p>
+
+<p>
+  <strong>Metric:</strong>
+  <%= @lhd_metric.metric %>
+</p>
+
+<%= link_to 'Edit', edit_lhd_metric_path(@lhd_metric) %> |
+<%= link_to 'Back', lhd_metrics_path %>

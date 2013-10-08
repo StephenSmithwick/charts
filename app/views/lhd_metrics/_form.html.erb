@@ -1,0 +1,33 @@
+<%= form_for(@lhd_metric) do |f| %>
+  <% if @lhd_metric.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lhd_metric.errors.count, "error") %> prohibited this lhd_metric from being saved:</h2>
+
+      <ul>
+      <% @lhd_metric.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :percentage %><br>
+    <%= f.text_field :percentage %>
+  </div>
+  <div class="field">
+    <%= f.label :lhd %><br>
+    <%= f.text_field :lhd %>
+  </div>
+  <div class="field">
+    <%= f.label :metric %><br>
+    <%= f.text_field :metric %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

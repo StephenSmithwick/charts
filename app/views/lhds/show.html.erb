@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lhd.name %>
+  <strong>Long Name:</strong>
+  <%= @lhd.long_name %>
+</p>
+
+<%= link_to 'Edit', edit_lhd_path(@lhd) %> |
+<%= link_to 'Back', lhds_path %>

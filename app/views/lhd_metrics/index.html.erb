@@ -1,0 +1,51 @@
+<h1>LHD Metrics</h1>
+<div ng-controller="LhdMetricListCtrl" class="lhd-metrics">
+  <table>
+    <thead>
+      <tr>
+        <th class="lm-metric">Metric</th>
+        <th class="lm-lhd">LHD</th>
+        <th class="lm-percentage">Percentage</th>
+        <th class="lm-value">Value <div class="subtitle">(In Millions)</div></th>
+        <th class="row-actions"></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="lm in lhdMetrics" ng-class="{editing: editing, error: error}" ng-controller="LhdMetricCtrl" ng-init="init(lm)">
+        <td>
+          <select 
+            class="lm-metric" 
+            ng-model="lm.metric_id" 
+            ng-options="metric.id as metric.name for metric in metrics">
+          </select>
+        </td>
+        <td>
+          <select 
+            class="lm-lhd"  
+            ng-model="lm.lhd_id" 
+            ng-options="lhd.id as lhd.name for lhd in lhds">
+          </select>
+        </td>
+        <td>
+          <input class="lm-percentage" ng-model="lm.percentage">
+        </td>
+        <td>
+          <input class="lm-value" ng-model="lm.value">
+        </td>
+        <td>
+          <div class="app-btns row-actions">
+            <button ng-show="editing" ng-click="save()" class="btn">Save</button>
+            <button ng-click="delete(lm)" class="btn">Delete</button>
+          </div>
+        </td>
+        <td>
+          <div ng-show="error">
+            {{error}}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button ng-click="add()" class="btn-add">New</button>
+</div>

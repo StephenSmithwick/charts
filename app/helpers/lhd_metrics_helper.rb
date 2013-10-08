@@ -1,0 +1,2 @@
+module LhdMetricsHelper
+end

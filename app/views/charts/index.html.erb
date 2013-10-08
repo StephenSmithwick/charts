@@ -1,0 +1,36 @@
+<div ng-controller="ChartsCtrl">
+
+  <ul class="metric-menu">
+    <li ng-model="metric_id"
+        ng-class="{selected: isSelected(metric.id)}" 
+        ng-repeat="metric in metrics" 
+        ng-click="selectMetric(metric.id)">
+      {{metric.name}}
+    </li>
+  </ul>
+
+  <div class="row">
+    <div class="col-md-6">
+
+      <bar-chart data="data" hovered="hovered(args)"></bar-chart>
+
+      <div class="panel-info">
+        <div class="heading">&nbsp;{{selected_lhd_name}}</div>
+        <div class="body">
+        <dl>
+          <dt>Value</dt>
+            <dd>$ {{selected_lhd_value}} million</dd>
+          <dt>Percentage</dt>
+            <dd>{{selected_lhd_percentage}} %</dd>
+        </dl>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-6">
+      <%= render 'map' %>
+    </div>
+  </div>
+  
+</div>

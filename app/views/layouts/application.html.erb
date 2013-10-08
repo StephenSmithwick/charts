@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="lhd">
+<head>
+  <title>Lhd Charts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<nav class="app-nav-bar" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="app-navbar-toggle" data-toggle="collapse" data-target=".app-navbar-menu">
+      <i class="icon-label"></i>
+    </button>
+    <%= link_to root_path, class: 'app-navbar-brand' do %>
+      <i class="icon-logo"></i>
+    <% end %>
+  </div>
+
+  <div class="app-navbar-menu">
+    <ul>
+      <li><%= link_to "LHDs", lhds_path %></li>
+      <li><%= link_to "Metrics", metrics_path %></li>
+      <li><%= link_to "LHD Metrics", lhd_metrics_path %></li>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <%= yield %>
+</div>
+</body>
+</html>

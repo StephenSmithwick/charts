@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  value: 9.99
+  lhd_id: 
+  metric_id: 
+
+two:
+  value: 9.99
+  lhd_id: 
+  metric_id: 
