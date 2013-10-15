@@ -3,7 +3,7 @@ d3.custom = {};
 d3.custom.barChart = function module() {
     var ease = 'cubic-in-out';
     var chart, duration = 500;
-    var dispatch = d3.dispatch('customHover');
+    var dispatch = d3.dispatch('selected');
 
     function hexColor(red, green, blue) {
         hexString = '#';
@@ -50,7 +50,7 @@ d3.custom.barChart = function module() {
                 .append('span').classed('bar-label', true)
                 .text(function(d){ return d.name; })
                 .attr({id: function(d){ return d.name.replace('&', '') + '-chart'; }})
-                .on('click', dispatch.customHover);
+                .on('click', dispatch.selected);
             barBacks_enter
                 .append('div').classed('half-back', true)
                 .append('div').classed('bar', true);

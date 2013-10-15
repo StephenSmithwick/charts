@@ -25,12 +25,12 @@ directive('barChart', function(){
     template: '<div class="chart"></div>',
     scope:{
       data: '=data',
-      hovered: '&hovered'
+      selected: '&selected'
     },
     link: function(scope, element, attrs) {
       var chartEl = d3.select(element[0]);
-      chart.on('customHover', function(d, i){
-        scope.hovered({args:d});
+      chart.on('selected', function(d, i){
+        scope.selected({args:d});
       });
 
       scope.$watch('data', function (data) {

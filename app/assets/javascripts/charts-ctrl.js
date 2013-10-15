@@ -23,7 +23,7 @@ function ChartsCtrl($scope, LhdMetrics, Lhds, Metrics, $timeout) {
     return metric_id == $scope.metric_id
   }
 
-  $scope.hovered = function(d){
+  $scope.selected = function(d){
     $scope.barValue = d.value;
     $scope.selected_lhd_name = d.long_name;
     $scope.selected_lhd_value = d.value;
