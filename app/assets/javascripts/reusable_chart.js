@@ -5,37 +5,17 @@ d3.custom.barChart = function module() {
     var chart, duration = 500;
     var dispatch = d3.dispatch('selected');
 
-    function hexColor(red, green, blue) {
-        hexString = '#';
-        [red, green, blue].forEach(function(c) {
-            hex = c.toString(16)
-            if(hex.length < 2) {
-                hexString += '0' + hex
-            } else {
-                hexString += hex
-            }
-        });
-        return hexString;
-    }
-
     function barChart(_selection) {
         _selection.each(function(lhdMetrics) {
-            var range = 0.1;
             data = lhdMetrics && lhdMetrics.data || [];
-            data.forEach(function(d) {
+            range = data.reduce(function(range, d) {
                 var abs_percentage = Math.abs(d.percentage);
-                if(range < abs_percentage) range = abs_percentage;
-            })
-
+                return (range < abs_percentage) ? abs_percentage : range;
+            }, 0.1);
             chart = d3.select(this).classed('chart', true);
-            
-            function barLength(value) {
-                var width = chart.style("width");
-                return Math.abs(parseFloat(value) * parseFloat(width) / 200.0) 
-            }
 
             function barDisplayValue(d) {
-                var abs_percentage = Math.abs(parseFloat(d.percentage));
+                var abs_percentage = Math.abs(d.percentage);
                 return (d.percentage < 0) ? "(" + abs_percentage + '%)' : abs_percentage + '%';
             }
 
@@ -64,12 +44,11 @@ d3.custom.barChart = function module() {
                     }
                 })
                 .each("end", function(d) {
-                    var halfBack = d3.select(this).style({
-                        'margin-left': (d.percentage < 0) ? '0%' : '50%'
-                    });
+                    var halfBack = d3.select(this)
+                    .style('margin-left', (d.percentage < 0) ? '0%' : '50%');
 
                     var halfBack_length = parseFloat(halfBack.style('width'));
-                    var bar_length = halfBack_length * parseFloat(Math.abs(d.percentage)) / range;
+                    var bar_length = halfBack_length * Math.abs(d.percentage) / range;
 
                     halfBack.select('.bar')
                     .transition()
@@ -89,8 +68,6 @@ d3.custom.barChart = function module() {
                 })
                 
             barBacks.exit().transition().style({opacity: 0}).remove();
-
-            duration = 500;
         });
     }
     d3.rebind(barChart, dispatch, 'on');
