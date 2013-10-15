@@ -38,16 +38,14 @@ function ChartsCtrl($scope, LhdMetrics, Lhds, Metrics, $timeout) {
   };
 
   function generateChartData(lhdMetrics) {
-    data = [];
-    for(i = 0; i < lhdMetrics.length; i++) {
-      data.push({
-        percentage: lhdMetrics[i].percentage,
-        name: lhdMetrics[i].lhd_name,
-        long_name: lhdMetrics[i].lhd_long_name,
-        value: lhdMetrics[i].value
-      });
-    }
-    return data;
+    return lhdMetrics.map(function(lhdMetric){
+      return {
+        percentage: lhdMetric.percentage,
+        name: lhdMetric.lhd_name,
+        long_name: lhdMetric.lhd_long_name,
+        value: lhdMetric.value
+      }
+    });
   };
 
   function requestMetrics(metric_id) {
