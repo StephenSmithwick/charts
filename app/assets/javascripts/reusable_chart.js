@@ -18,17 +18,16 @@ d3.custom.barChart = function module() {
         return hexString;
     }
 
-
     function barChart(_selection) {
-        _selection.each(function(_data) {
+        _selection.each(function(lhdMetrics) {
             var range = 0.1;
-            _data.forEach(function(d) {
+            data = lhdMetrics && lhdMetrics.data || [];
+            data.forEach(function(d) {
                 var abs_percentage = Math.abs(d.percentage);
                 if(range < abs_percentage) range = abs_percentage;
             })
 
-            chart = d3.select(this)
-                .classed('chart', true);
+            chart = d3.select(this).classed('chart', true);
             
             function barLength(value) {
                 var width = chart.style("width");
@@ -42,14 +41,14 @@ d3.custom.barChart = function module() {
 
 
             var barBacks = chart.selectAll('.bar-back')
-                .data(_data)
+                .data(data)
 
             barBacks_enter = barBacks.enter()
                 .append('div').classed('bar-back', true);
             barBacks_enter
                 .append('span').classed('bar-label', true)
-                .text(function(d){ return d.name; })
-                .attr({id: function(d){ return d.name.replace('&', '') + '-chart'; }})
+                .text(function(d){ return d.lhd_name; })
+                .attr({id: function(d){ return d.lhd_name.replace('&', '') + '-chart'; }})
                 .on('click', dispatch.selected);
             barBacks_enter
                 .append('div').classed('half-back', true)

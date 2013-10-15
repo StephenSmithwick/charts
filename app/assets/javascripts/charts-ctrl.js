@@ -1,22 +1,9 @@
 function ChartsCtrl($scope, LhdMetrics, Lhds, Metrics, $timeout) {
-  $scope.lhds = Lhds.query(); 
-  $scope.metrics = Metrics.query(); 
-
-  $scope.metric_id = 1
-  $scope.lhd_id = 1
-
-  $scope.data = [];
-
-  $scope.selected_lhd_name = "";
-  $scope.selected_lhd_value = "";
-  $scope.selected_lhd_percentage = "";
-  
-  $scope.$watch('metric_id', function(new_metric_id, old_metric_id) {
-    requestMetrics(new_metric_id)
-  }, true);
-  
   $scope.selectMetric = function(metric_id) {
-    requestMetrics(metric_id)
+    LhdMetrics.query({metric_id: metric_id}).$then(function(results){
+      $scope.metric_id = metric_id;
+      $scope.metric_data = results;
+    });
   }
 
   $scope.isSelected = function(metric_id) {
@@ -37,21 +24,12 @@ function ChartsCtrl($scope, LhdMetrics, Lhds, Metrics, $timeout) {
     $scope.$apply();
   };
 
-  function generateChartData(lhdMetrics) {
-    return lhdMetrics.map(function(lhdMetric){
-      return {
-        percentage: lhdMetric.percentage,
-        name: lhdMetric.lhd_name,
-        long_name: lhdMetric.lhd_long_name,
-        value: lhdMetric.value
-      }
-    });
-  };
+  $scope.lhd_id = 1
+  $scope.selected_lhd_name = "";
+  $scope.selected_lhd_value = "";
+  $scope.selected_lhd_percentage = "";  
 
-  function requestMetrics(metric_id) {
-    LhdMetrics.query({metric_id: metric_id}).$then(function(results){
-      $scope.metric_id = metric_id
-      $scope.data = generateChartData(results.resource);
-    });
-  };
+  $scope.lhds = Lhds.query(); 
+  $scope.metrics = Metrics.query();
+  $scope.selectMetric(1);
 }
