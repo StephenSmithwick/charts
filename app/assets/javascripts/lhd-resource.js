@@ -38,6 +38,28 @@ directive('barChart', function(){
       });
     }
   }
+}).
+directive('mapChart', function(){
+  var chart = d3.custom.mapChart();
+  return {
+    restrict: 'E',
+    replace: true,
+    template: '<svg></svg>',
+    scope:{
+      data: '=data',
+      selected: '&selected'
+    },
+    link: function(scope, element, attrs) {
+      var chartEl = d3.select(element[0]);
+      chart.on('selected', function(d, i){
+        scope.selected({args:d});
+      });
+
+      scope.$watch('data', function (data) {
+        chartEl.datum(data).call(chart);
+      });
+    }
+  }
 });
 
 // default actions

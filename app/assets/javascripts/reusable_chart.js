@@ -1,4 +1,4 @@
-d3.custom = {};
+d3.custom = d3.custom || {};
 
 d3.custom.barChart = function module() {
     var ease = 'cubic-in-out';
@@ -6,8 +6,8 @@ d3.custom.barChart = function module() {
     var dispatch = d3.dispatch('selected');
 
     function barChart(_selection) {
-        _selection.each(function(lhdMetrics) {
-            data = lhdMetrics && lhdMetrics.data || [];
+        _selection.each(function(data) {
+            if(data === undefined) return; 
             range = data.reduce(function(range, d) {
                 var abs_percentage = Math.abs(d.percentage);
                 return (range < abs_percentage) ? abs_percentage : range;
@@ -18,7 +18,6 @@ d3.custom.barChart = function module() {
                 var abs_percentage = Math.abs(d.percentage);
                 return (d.percentage < 0) ? "(" + abs_percentage + '%)' : abs_percentage + '%';
             }
-
 
             var barBacks = chart.selectAll('.bar-back')
                 .data(data)

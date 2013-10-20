@@ -15,13 +15,13 @@
       <bar-chart data="metric_data" selected="selected(args)"></bar-chart>
 
       <div class="panel-info">
-        <div class="heading">&nbsp;{{selected_lhd_name}}</div>
+        <div class="heading">&nbsp;{{lhd_metric.lhd_name}}</div>
         <div class="body">
         <dl>
           <dt>Value</dt>
-            <dd>$ {{selected_lhd_value}} million</dd>
+            <dd>$ {{lhd_metric.value}} million</dd>
           <dt>Percentage</dt>
-            <dd>{{selected_lhd_percentage}} %</dd>
+            <dd>{{lhd_metric.percentage}} %</dd>
         </dl>
         </div>
       </div>
