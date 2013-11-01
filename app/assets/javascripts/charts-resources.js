@@ -18,49 +18,11 @@ angular
     create: { method: 'POST' }
   });
 })
-.directive('barChart', function(){
-  var chart = d3.custom.barChart();
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<div class="chart"></div>',
-    scope:{
-      data: '=data',
-      selected: '&selected'
-    },
-    link: function(scope, element, attrs) {
-      var chartEl = d3.select(element[0]);
-      chart.on('selected', function(d, i){
-        scope.selected({args:d});
-      });
-
-      scope.$watch('data', function (data) {
-        chartEl.datum(data).call(chart);
-      });
-    }
-  }
+.directive('barChart', function() {
+  return ngBarChart();
 })
-.directive('mapChart', function(){
-  var chart = d3.custom.mapChart();
-  return {
-    restrict: 'E',
-    replace: true,
-    templateUrl: 'assets/directives/charts.html',
-    scope:{
-      data: '=data',
-      selected: '&selected'
-    },
-    link: function(scope, element, attrs) {
-      var chartEl = d3.select(element[0]);
-      chart.on('selected', function(d, i){
-        scope.selected({args:d});
-      });
-
-      scope.$watch('data', function (data) {
-        chartEl.datum(data).call(chart);
-      });
-    }
-  }
+.directive('mapChart', function() {
+  return ngMapChart();
 });
 
 // default actions

@@ -1,6 +1,4 @@
-d3.custom = d3.custom || {};
-
-d3.custom.barChart = function module() {
+function ngBarChart() {
     var ease = 'cubic-in-out';
     var chart, duration = 500;
     var dispatch = d3.dispatch('selected');
@@ -70,5 +68,24 @@ d3.custom.barChart = function module() {
         });
     }
     d3.rebind(barChart, dispatch, 'on');
-    return barChart;
-};
+
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<div class="chart"></div>',
+        scope:{
+          data: '=data',
+          selected: '&selected'
+      },
+      link: function(scope, element, attrs) {
+          var chartEl = d3.select(element[0]);
+          barChart.on('selected', function(d, i){
+            scope.selected({args:d});
+        });
+
+          scope.$watch('data', function (data) {
+            chartEl.datum(data).call(barChart);
+        });
+      }
+    }
+}

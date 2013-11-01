@@ -1,6 +1,4 @@
-d3.custom = d3.custom || {};
-
-d3.custom.mapChart = function module() {
+function ngMapChart() {
     var ease = 'cubic-in-out';
     var chart, duration = 500;
     var dispatch = d3.dispatch('selected');
@@ -30,7 +28,25 @@ d3.custom.mapChart = function module() {
             .remove();
         });
     }
-
     d3.rebind(mapChart, dispatch, 'on');
-    return mapChart;
-};
+
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'assets/directives/charts.html',
+        scope:{
+          data: '=data',
+          selected: '&selected'
+      },
+      link: function(scope, element, attrs) {
+          var chartEl = d3.select(element[0]);
+          mapChart.on('selected', function(d, i){
+            scope.selected({args:d});
+        });
+
+          scope.$watch('data', function (data) {
+            chartEl.datum(data).call(mapChart);
+        });
+      }
+    }
+}
