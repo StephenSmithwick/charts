@@ -12,7 +12,10 @@
   <div class="row">
     <div class="col-md-6">
 
-      <bar-chart data="metric_data" selected="selected(args)"></bar-chart>
+      <bar-chart 
+        data="metric_data" 
+        selected="selectLhdMetric(args)">
+      </bar-chart>
 
       <div class="panel-info">
         <div class="heading">&nbsp;{{lhd_metric.lhd_name}}</div>
@@ -30,11 +33,10 @@
 
     <div class="col-md-6">
       <map-chart
-       transform="translate(-84.945272,-149.66741)"
-       data="lhds" 
-       selected="selectedLhd(args)"
-       id="lhd-map">
-     </map-chart>
+        data="lhds" 
+        selected="selectLhd(args)"
+        id="lhd-map">
+      </map-chart>
     </div>
   </div>
   

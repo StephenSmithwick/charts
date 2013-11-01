@@ -13,15 +13,7 @@ function ChartsCtrl($scope, LhdMetrics, Lhds, Metrics, $timeout) {
     // });
   }
 
-  $scope.isSelected = function(metric_id) {
-    return metric_id == $scope.metric_id
-  }
-
-  $scope.isSelectedLhd = function(lhd_id) {
-    return lhd_id == $scope.lhd_id
-  }
-
-  $scope.selected = function(d){
+  $scope.selectLhdMetric = function(d){
     $scope.lhd_metric = d;
 
     d3.select('.selected.map-item').classed('selected', false);
@@ -32,6 +24,16 @@ function ChartsCtrl($scope, LhdMetrics, Lhds, Metrics, $timeout) {
     $scope.$apply();
   };
 
+
+  $scope.isSelected = function(metric_id) {
+    return metric_id == $scope.metric_id
+  }
+
+  $scope.isSelectedLhd = function(lhd_id) {
+    return lhd_id == $scope.lhd_id
+  }
+
+  
   Lhds.query().$then(function(results) {
     $scope.lhds = results.data;
   }); 

@@ -1,6 +1,6 @@
 function ngBarChart() {
     var ease = 'cubic-in-out';
-    var chart, duration = 500;
+    var duration = 500;
     var dispatch = d3.dispatch('selected');
 
     function barChart(_selection) {
@@ -78,13 +78,13 @@ function ngBarChart() {
           selected: '&selected'
       },
       link: function(scope, element, attrs) {
-          var chartEl = d3.select(element[0]);
-          barChart.on('selected', function(d, i){
+        var chart = d3.select(element[0]);
+        barChart.on('selected', function(d, i){
             scope.selected({args:d});
         });
 
-          scope.$watch('data', function (data) {
-            chartEl.datum(data).call(barChart);
+        scope.$watch('data', function (data) {
+            chart.datum(data).call(barChart);
         });
       }
     }
