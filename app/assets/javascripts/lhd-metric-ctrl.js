@@ -32,7 +32,6 @@ function LhdMetricCtrl($scope, LhdMetrics) {
 
   $scope.$watch('lhdMetric', function(new_lm, old_lm) {
     if( new_lm != old_lm) {
-      console.log("Editing detected")
       $scope.editing = true;
     }
   }, true);

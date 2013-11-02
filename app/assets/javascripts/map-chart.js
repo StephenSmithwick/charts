@@ -24,7 +24,6 @@ function ngMapChart() {
     function renderText(chart, data) {
         var lhd = chart.selectAll('text.map-item')
             .data(data);
-        console.log("rendering text with: %o", data);
 
         lhd.enter()
         .append('text').classed('map-item', true)
