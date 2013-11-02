@@ -127,7 +127,7 @@ body {
   .bar-back {
     height: 16px;
     margin: 5px;
-    box-shadow: 2px 2px 2px #b3b3b3;
+    box-shadow: 2px 2px 2px $grey;
     width: 80%;
     position: relative;
 
@@ -139,10 +139,10 @@ body {
       margin-left: 12px;
       position: absolute;
 
-      background-color: steelblue;
+      background-color: $blue;
       color: #fff;
       font-weight: bold;
-      text-align: right;
+      text-align: center;
       text-shadow: 1px 1px #444;
       cursor: pointer;
       line-height: 16px;
@@ -152,7 +152,7 @@ body {
         
         border-top: 8px solid transparent;
         border-bottom: 8px solid transparent;
-        border-right: 8px solid steelblue;
+        border-right: 8px solid $blue;
         left: -7px;
         position: absolute;
       }
@@ -160,8 +160,8 @@ body {
       &:after {
         content: ' ';
         
-        border-top: 8px solid steelblue;
-        border-bottom: 8px solid steelblue;
+        border-top: 8px solid $blue;
+        border-bottom: 8px solid $blue;
         border-right: 8px solid transparent;
         left: 100%;
         position: absolute;
@@ -169,16 +169,16 @@ body {
 
       &.selected {
         &:before {
-          border-right: 8px solid #d9edf7;
+          border-right: 8px solid $light-blue;
         }
 
         &:after {
-          border-top: 8px solid #d9edf7;
-          border-bottom: 8px solid #d9edf7;
+          border-top: 8px solid $light-blue;
+          border-bottom: 8px solid $light-blue;
         }
 
-        color: #3a87ad;
-        background-color: #d9edf7;
+        color: $green-blue;
+        background-color: $light-blue;
         border-color: #bce8f1;
       }
     }
@@ -188,7 +188,7 @@ body {
       display: inline-block;
 
       .bar {
-        background-color: steelblue;
+        background-color: $blue;
         color: #fff;
         font-size: 12px;
         text-shadow: 1px 1px #444;
@@ -218,18 +218,18 @@ body {
 }
 
 .map-item {
-  fill: steelblue;
+  fill: $blue;
   stroke-width:3.75;
   stroke-miterlimit:4;
   stroke-dasharray:none;
 
   &.selected {
     fill: #bce8f1;
-    stroke: #3a87ad;
+    stroke: $green-blue;
   }
 
   &.disabled {
-    fill: #b3b3b3;
+    fill: $grey;
   }
 }
 
