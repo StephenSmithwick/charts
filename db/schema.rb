@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20130914150302) do
     t.string   "name"
     t.string   "long_name"
     t.string   "path"
+    t.decimal  "x"
+    t.decimal  "y"
   end
 
   create_table "metrics", force: true do |t|
